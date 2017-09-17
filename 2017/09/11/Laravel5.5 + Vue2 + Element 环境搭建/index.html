@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>Laravel5.5 + Vue2 + Element 环境搭建 | 潜心做事</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="PHP,环境搭建," />
+  
+
+  <meta name="description" content="搭建说明同类的教程网上也有不少，本文不是为了重复造轮子，只是在 Laravel5.5 LTS 推出之际，重新记录自己的搭建过程，避免以后再次踩坑。 网上的许多教程都是基于 Laravel5 系列的不同版本，虽然大致过程都差不多，但是对于前端编译工具不甚了解的人来说，官方推荐的前端编译工具的改变也着实容易让人迷糊。 为了便于理解，本文初次搭建时，尽量简单，能运行即可，关于前端编译工具，Vue 路由等">
+<meta name="keywords" content="PHP,环境搭建">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Laravel5.5 + Vue2 + Element 环境搭建">
+<meta property="og:url" content="http://mrzhouxiaofei.com/2017/09/11/Laravel5.5 + Vue2 + Element 环境搭建/index.html">
+<meta property="og:site_name" content="潜心做事">
+<meta property="og:description" content="搭建说明同类的教程网上也有不少，本文不是为了重复造轮子，只是在 Laravel5.5 LTS 推出之际，重新记录自己的搭建过程，避免以后再次踩坑。 网上的许多教程都是基于 Laravel5 系列的不同版本，虽然大致过程都差不多，但是对于前端编译工具不甚了解的人来说，官方推荐的前端编译工具的改变也着实容易让人迷糊。 为了便于理解，本文初次搭建时，尽量简单，能运行即可，关于前端编译工具，Vue 路由等">
+<meta property="og:image" content="http://mrzhouxiaofei.com/images/Larvuent_1.jpg">
+<meta property="og:image" content="http://mrzhouxiaofei.com/images/Larvuent_2.jpg">
+<meta property="og:updated_time" content="2017-09-16T08:02:38.965Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Laravel5.5 + Vue2 + Element 环境搭建">
+<meta name="twitter:description" content="搭建说明同类的教程网上也有不少，本文不是为了重复造轮子，只是在 Laravel5.5 LTS 推出之际，重新记录自己的搭建过程，避免以后再次踩坑。 网上的许多教程都是基于 Laravel5 系列的不同版本，虽然大致过程都差不多，但是对于前端编译工具不甚了解的人来说，官方推荐的前端编译工具的改变也着实容易让人迷糊。 为了便于理解，本文初次搭建时，尽量简单，能运行即可，关于前端编译工具，Vue 路由等">
+<meta name="twitter:image" content="http://mrzhouxiaofei.com/images/Larvuent_1.jpg">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbe6" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+
+  
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">导航</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">导航</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#搭建说明"><span class="toc-text">搭建说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#搭建过程"><span class="toc-text">搭建过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-新建-Laravel5-5-项目"><span class="toc-text">1.新建 Laravel5.5 项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-安装前端依赖库"><span class="toc-text">2.安装前端依赖库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-修改-Laravel-路由"><span class="toc-text">3.修改 Laravel 路由</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-新建-Hello-vue-文件"><span class="toc-text">4.新建 Hello.vue 文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-修改-app-js-文件，渲染组件"><span class="toc-text">5.修改 app.js 文件，渲染组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-新建-Laravel-视图文件，和-Vue-交互"><span class="toc-text">6.新建 Laravel 视图文件，和 Vue 交互</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-编译前端组件，运行"><span class="toc-text">7.编译前端组件，运行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-引入-Element"><span class="toc-text">8.引入 Element</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-修改-Hello-vue-文件，使用-Element-组件"><span class="toc-text">9.修改 Hello.vue 文件，使用 Element 组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-再次编译前端资源，运行"><span class="toc-text">10.再次编译前端资源，运行</span></a></li></ol></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-Laravel5.5 + Vue2 + Element 环境搭建" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">Laravel5.5 + Vue2 + Element 环境搭建</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2017.09.11</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>mrzhouxiaofei</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/后端/">后端</a>
+  </span>
+
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h2 id="搭建说明"><a href="#搭建说明" class="headerlink" title="搭建说明"></a>搭建说明</h2><p>同类的教程网上也有不少，本文不是为了重复造轮子，只是在 Laravel5.5 LTS 推出之际，重新记录自己的搭建过程，避免以后再次踩坑。</p>
+<p>网上的许多教程都是基于 Laravel5 系列的不同版本，虽然大致过程都差不多，但是对于前端编译工具不甚了解的人来说，官方推荐的前端编译工具的改变也着实容易让人迷糊。</p>
+<p>为了便于理解，本文初次搭建时，尽量简单，能运行即可，关于前端编译工具，Vue 路由等等，后面再说。</p>
+<h2 id="搭建过程"><a href="#搭建过程" class="headerlink" title="搭建过程"></a>搭建过程</h2><h3 id="1-新建-Laravel5-5-项目"><a href="#1-新建-Laravel5-5-项目" class="headerlink" title="1.新建 Laravel5.5 项目"></a>1.新建 Laravel5.5 项目</h3><p>在 Web 服务器目录下，使用 Composer 建立新项目<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">composer create-project --prefer-dist laravel/laravel Larvuent // 新项目名为 Larvuent</div></pre></td></tr></table></figure></p>
+<p>Larvuent 安装完成后，执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cd Larvuent</div></pre></td></tr></table></figure></p>
+<p><strong>说明：建议配置虚拟主机</strong></p>
+<h3 id="2-安装前端依赖库"><a href="#2-安装前端依赖库" class="headerlink" title="2.安装前端依赖库"></a>2.安装前端依赖库</h3><p>进入 Larvuent 项目后，执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install // 速度慢的请自行切换淘宝镜像 cnpm</div></pre></td></tr></table></figure></p>
+<h3 id="3-修改-Laravel-路由"><a href="#3-修改-Laravel-路由" class="headerlink" title="3.修改 Laravel 路由"></a>3.修改 Laravel 路由</h3><p>修改 <strong>routes/web.php</strong> 文件为<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Route::get(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</div><div class="line">	<span class="keyword">return</span> view(<span class="string">'index'</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<h3 id="4-新建-Hello-vue-文件"><a href="#4-新建-Hello-vue-文件" class="headerlink" title="4.新建 Hello.vue 文件"></a>4.新建 Hello.vue 文件</h3><p>在 <strong>resources/assets/js/components</strong> 目录下新建 Hello.vue 文件<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">&lt;template&gt;</div><div class="line">    &lt;div&gt;</div><div class="line">        &lt;h1&gt;Hello, Larvuent!&lt;/h1&gt;</div><div class="line">        &lt;p class="hello"&gt;&#123;&#123; msg &#125;&#125;&lt;/p&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">&lt;/template&gt;</div><div class="line">                             </div><div class="line">&lt;script&gt;</div><div class="line">export default &#123;</div><div class="line">    data() &#123;</div><div class="line">        return &#123;</div><div class="line">            msg: 'This is a Laravel with Vue and Element Demo.'</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">&lt;/script&gt;</div><div class="line">                           </div><div class="line">&lt;style&gt;</div><div class="line">.hello &#123;</div><div class="line">    font-size: 2em;</div><div class="line">    color: green;</div><div class="line">&#125;</div><div class="line">&lt;/style&gt;</div></pre></td></tr></table></figure></p>
+<h3 id="5-修改-app-js-文件，渲染组件"><a href="#5-修改-app-js-文件，渲染组件" class="headerlink" title="5.修改 app.js 文件，渲染组件"></a>5.修改 app.js 文件，渲染组件</h3><p>修改 <strong>resources/assets/js/app.js</strong> 文件<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">require</span>(<span class="string">'./bootstrap'</span>);</div><div class="line"></div><div class="line"><span class="built_in">window</span>.Vue = <span class="built_in">require</span>(<span class="string">'vue'</span>);</div><div class="line"></div><div class="line"><span class="comment">// Vue.component('example', require('./components/Example.vue')); // 注释掉</span></div><div class="line"><span class="keyword">import</span> Hello <span class="keyword">from</span> <span class="string">'./components/Hello.vue'</span>; <span class="comment">// 引入Hello 组件</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Vue(&#123;</div><div class="line">    <span class="attr">el</span>: <span class="string">'#app'</span>,</div><div class="line">    <span class="attr">render</span>: <span class="function"><span class="params">h</span> =&gt;</span> h(Hello)</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p><strong>说明：app.js 是构建 Vue 项目的主文件，最后所有的组件都会被引入到这个文件，在引入所有组件之前，bootstrap.js 文件做了一些初始化的操作。同时，因为有了 window.Vue = require(‘vue’) 这句话，就不再需要使用 import Vue from ‘vue’ 重复导入 Vue 了。</strong></p>
+<h3 id="6-新建-Laravel-视图文件，和-Vue-交互"><a href="#6-新建-Laravel-视图文件，和-Vue-交互" class="headerlink" title="6.新建 Laravel 视图文件，和 Vue 交互"></a>6.新建 Laravel 视图文件，和 Vue 交互</h3><p>在 <strong>resources/views</strong> 目录下新建 index.blade.php 文件<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!doctype html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span></span></div><div class="line">          <span class="attr">content</span>=<span class="string">"width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"</span>&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Larvuent<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"&#123;&#123; mix('js/app.js') &#125;&#125;"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>说明：你可能在其他教程中看到有的在使用 assets 函数，这两个函数的主要区别就是 assets 函数会直接使用所填路径去 public 文件夹下找文件，而 mix 函数会自动加载带 hash 值的前端资源。这是和 Laravel 前端资源的缓存刷新相关的，如果现在还不明白，不要紧，你记得使用 mix 函数就好了，然后继续往后看。</p>
+<h3 id="7-编译前端组件，运行"><a href="#7-编译前端组件，运行" class="headerlink" title="7.编译前端组件，运行"></a>7.编译前端组件，运行</h3><p>执行以下命令，编译前端资源<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm run dev</div></pre></td></tr></table></figure></p>
+<p>该命令会去执行根目录下的 webpack.mix.js 文件，使用 Laravel 提供的 Laravel Mix 编译资源，并将编译好的资源放在根目录 public 文件夹下。 </p>
+<p><strong>说明：前端编译工具有许多，比如 gulp、webpack 等等，Laravel 也为自己提供了开箱即用的编译工具，比如 Laravel5.3 及更早版本提供基于 gulp 的 Laravel Elixir 和从 Laravel5.4 开始提供基于 webpack 的 Laravel Mix，当然你也可以不使用官方提供的工具，自己去配置编译工具。这些编译工具的作用都是一样的，使用方法也大同小异。前面说过，本文第一次安装尽量简单，能运行即可，所以不再去配置前端编译工具，使用官方提供的即可。</strong></p>
+<p>访问项目<br><img src="/images/Larvuent_1.jpg" alt=""></p>
+<p>到目前为止，Laravel + Vue 已经完成了，下面开始引入 Element。</p>
+<h3 id="8-引入-Element"><a href="#8-引入-Element" class="headerlink" title="8.引入 Element"></a>8.引入 Element</h3><p>修改 <strong>resources/assets/js/app.js</strong> 文件<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> Hello <span class="keyword">from</span> <span class="string">'./components/Hello.vue'</span>; <span class="comment">// 引入Hello 组件</span></div><div class="line"><span class="keyword">import</span> ElementUI <span class="keyword">from</span> <span class="string">'element-ui'</span>;</div><div class="line"><span class="keyword">import</span> <span class="string">'element-ui/lib/theme-default/index.css'</span>;</div><div class="line">Vue.use(ElementUI);</div></pre></td></tr></table></figure></p>
+<h3 id="9-修改-Hello-vue-文件，使用-Element-组件"><a href="#9-修改-Hello-vue-文件，使用-Element-组件" class="headerlink" title="9.修改 Hello.vue 文件，使用 Element 组件"></a>9.修改 Hello.vue 文件，使用 Element 组件</h3><p>修改 <strong>resources/assets/js/components/Hello.vue</strong> 文件为<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">&lt;template&gt;</div><div class="line">    <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></div><div class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello, Larvuent!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">el-button</span> @<span class="attr">click</span>=<span class="string">"visible = true"</span>&gt;</span>按钮<span class="tag">&lt;/<span class="name">el-button</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">el-dialog</span> <span class="attr">v-model</span>=<span class="string">"visible"</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">p</span>&gt;</span>欢迎使用 Element<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">el-dialog</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</div><div class="line">    data() &#123;</div><div class="line">        <span class="keyword">return</span> &#123;</div><div class="line">            <span class="attr">visible</span>: <span class="literal">false</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></div><div class="line">.hello &#123;</div><div class="line">    font-size: 2em;</div><div class="line">    color: green;</div><div class="line">&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<h3 id="10-再次编译前端资源，运行"><a href="#10-再次编译前端资源，运行" class="headerlink" title="10.再次编译前端资源，运行"></a>10.再次编译前端资源，运行</h3><p>执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm run dev</div></pre></td></tr></table></figure></p>
+<p>访问项目，点击按钮<br><img src="/images/Larvuent_2.jpg" alt=""></p>
+<p>好了，到目前为止，Laravel5.5 + Vue2 + Element 的环境搭建已经完成了，为了方便理解，第一次的搭建过程尽量简洁。本文下面的部分将使用 Vue 路由等等，逐步完善，便于后期的开发。</p>
+
+    
+  </div>
+</article>
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2017/08/09/跨域问题解决方案之 JSONP/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="hide pull-right" href="/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+
+
+
+
+    
+
+    
+	
+    
+  <section id="changyan-comments">
+    <div id="SOHUCS" sid="Laravel5.5 + Vue2 + Element 环境搭建"></div>
+    <script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js" ></script>
+    <script type="text/javascript">
+      window.changyan.api.config({
+        appid: 'cyt7l11BM',
+        conf: 'prod_a98ea73c3a76aca2a1fbc73edb66a25d'
+      });
+    </script>
+  </section>
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>
