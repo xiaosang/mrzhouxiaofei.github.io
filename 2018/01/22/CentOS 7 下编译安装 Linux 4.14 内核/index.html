@@ -26,10 +26,10 @@
 <meta property="og:image" content="http://mrzhouxiaofei.com/images/内核编译_2.jpg">
 <meta property="og:image" content="http://mrzhouxiaofei.com/images/内核编译_3.jpg">
 <meta property="og:image" content="http://mrzhouxiaofei.com/images/编译内核_4.jpg">
-<meta property="og:image" content="http://mrzhouxiaofei.com/images/内核编译.jpg">
+<meta property="og:image" content="http://mrzhouxiaofei.com/images/内核编译_5.jpg">
 <meta property="og:image" content="http://mrzhouxiaofei.com/images/内核编译_6.jpg">
 <meta property="og:image" content="http://mrzhouxiaofei.com/images/内核编译_7.jpg">
-<meta property="og:updated_time" content="2018-01-23T03:43:50.066Z">
+<meta property="og:updated_time" content="2018-01-23T03:49:21.362Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CentOS 7 下编译安装 Linux 4.14 内核">
 <meta name="twitter:description" content="编译之前引入最近在学习 Linux，看到介绍内核，就想着自己编译一下内核，虽然不会搞硬件开发，不会写底层的东西，但还是想看一下编译的整个过程。想着就开始弄，没想到中间还是有很多坑的，尤其是编译之前，选择配置这一部分，配置项太多了，因为只是想看编译的整个过程，所以就没有深究每一个配置项。整个过程比较长，特此记录，避免以后再次踩坑。 环境开始之前，先介绍一下编译环境。直接在自己常用的 Linux 主机">
@@ -279,7 +279,7 @@
 <p>等待完成，执行 make install 开始安装核心</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">make install</div></pre></td></tr></table></figure>
 <p>执行完成之后，就可以在 /boot/ 目录下看到新编译的内核了。</p>
-<p><img src="/images/内核编译.jpg" alt=""></p>
+<p><img src="/images/内核编译_5.jpg" alt=""></p>
 <h2 id="更新引导"><a href="#更新引导" class="headerlink" title="更新引导"></a>更新引导</h2><p>到现在为止，离成功就差一步更新引导了。可以直接去修改 /boot/grub2/grub.cfg 文件来更新引导，但是非常不建议这样去做。</p>
 <p>推荐使用 grub2-mkconfig 来更新引导文件，下面的命令会根据 /boot/ 目录下的内核文件自动更新 grub 文件。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">grub2-mkconfig -o /boot/grub2/grub.cfg</div></pre></td></tr></table></figure>
