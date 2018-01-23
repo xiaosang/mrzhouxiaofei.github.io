@@ -29,7 +29,7 @@
 <meta property="og:image" content="http://mrzhouxiaofei.com/images/内核编译_5.jpg">
 <meta property="og:image" content="http://mrzhouxiaofei.com/images/内核编译_6.jpg">
 <meta property="og:image" content="http://mrzhouxiaofei.com/images/内核编译_7.jpg">
-<meta property="og:updated_time" content="2018-01-23T03:53:57.721Z">
+<meta property="og:updated_time" content="2018-01-23T06:56:31.932Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CentOS 7 下编译安装 Linux 4.14 内核">
 <meta name="twitter:description" content="编译之前引入最近在学习 Linux，看到介绍内核，就想着自己编译一下内核，虽然不会搞硬件开发，不会写底层的东西，但还是想看一下编译的整个过程。想着就开始弄，没想到中间还是有很多坑的，尤其是编译之前，选择配置这一部分，配置项太多了，因为只是想看编译的整个过程，所以就没有深究每一个配置项。整个过程比较长，特此记录，避免以后再次踩坑。 环境开始之前，先介绍一下编译环境。直接在自己常用的 Linux 主机">
@@ -245,7 +245,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar xvJf linux-4.14.14.tar.xz -C /usr/src/</div></pre></td></tr></table></figure>
 <p><img src="/images/内核编译_1.jpg" alt=""></p>
 <p>内核解压之后，每个文件夹内包含的是什么代码，可以自行搜索了解一下。</p>
-<h2 id="配置项"><a href="#配置项" class="headerlink" title="配置项"></a>配置项</h2><p>重点来了，解压完之后，编译之前要先生成 config 配置文件。这个文件是干什么的呢？它是编译时的必备文件，指明了所有的配置项，编译时就是根据你选择的配置项来定制内核的。在你的 CentOS 内同样有这样一个配置文件，在 /boot/ 目录下有一个 config 开头的文件，就是它，你可以先 cat 一下，会发现都是键值对，所有的配置项都在这。</p>
+<h2 id="配置项"><a href="#配置项" class="headerlink" title="配置项"></a>配置项</h2><p>重点来了，解压之后，编译之前要先生成 config 配置文件。这个文件是干什么的呢？它是编译时的必备文件，指明了所有的配置项，编译时就是根据你选择的配置项来定制内核的。在你的 CentOS 内同样有这样一个配置文件，在 /boot/ 目录下有一个 config 开头的文件，就是它，你可以先 cat 一下，会发现都是键值对，所有的配置项都在这。</p>
 <p>配置项非常多，可以随心所欲的定制内核，把不需要的全部关闭，当然也不是随心所欲，某些配置项是必须要选的，否则可能连系统也启动不了。</p>
 <p>选择配置项的方式有以下几种，当然它们的目的都是为了生成 config 文件，所以选择哪种都可以。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">make config （基于文本的配置界面）</div><div class="line">make menuconfig （基于文本菜单的配置界面）</div><div class="line">make xconfig （基于图形窗口的配置界面）</div><div class="line">make oldconfig （基于原来内核配置的基础上修改）</div></pre></td></tr></table></figure>
@@ -287,8 +287,9 @@
 <p>执行完之后，下次启动系统的时候就可以选择我们编译的内核了。如果想修改默认的启动内核，可以通过修改 /etc/default/grub 文件来实现。</p>
 <p>重启系统，如果看到两个内核，说明已经成功了，你可以自由的选择哪个内核。</p>
 <p><img src="/images/内核编译_7.jpg" alt=""></p>
-<p>至此，内核的编译安装就全部结束了，后面再啰嗦几句，说说这次编译。</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1>
+<p>至此，内核的编译安装就全部结束了，整个过程中，如果出现什么问题，根据报错信息就可以解决了。最后再啰嗦几句，说说这次编译。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>用 Linux 系统也很久了，没去研究过内核，只是知道而已，就是突然心血来潮想要编译一下 Linux 内核，就去搞了，一个简单的编译，还是遇到了不少坑。首先，第一次编译时，CentOS 分区给的太小，导致内核编译了一个多小时后停了下来，一看，好嘛，空间已经用完了。马上删了虚拟机，又重装，这次分了 50G，应该不会出现这个问题了。选择配置项的时候，又研究了一上午，一直在看每个配置项什么意思，总是想把每一项弄明白，看了一部分后，感觉工作量太大了，而且背离了初衷，然后就不看了，直接跳过去了。后面的过程就比较快，一气呵成。比较不足的还是没有定义自己的配置项，把自己编译最大的好处隔过去了，以后需要了再去搞吧，编译应该能节省不少时间。来来回回整了两天，虽然东西不太多，我感觉还是有点意义的。<br><br><br></p>
+
     
   </div>
 </article>
