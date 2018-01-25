@@ -12,24 +12,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="环境搭建,PHP," />
+    <meta name="keywords" content="PHP,环境搭建," />
   
 
-  <meta name="description" content="搭建说明同类的教程网上也有不少，本文不是为了重复造轮子，只是在 Laravel5.5 LTS 推出之际，重新记录自己的搭建过程，避免以后再次踩坑。 网上的许多教程都是基于 Laravel5 系列的不同版本，虽然大致过程都差不多，但是对于前端编译工具不甚了解的人来说，官方推荐的前端编译工具的改变也着实容易让人迷糊。 为了便于理解，本文初次搭建时，尽量简单，能运行即可，关于前端编译工具，Vue 路由等">
-<meta name="keywords" content="环境搭建,PHP">
+  <meta name="description" content="更新说明2018 年 1 月 25 日更新 开始写这篇文章时，Element 的版本还是 1.4，现在已经来到 2.0 了，有些步骤需要修改，特此说明。  第 9 步，修改 Hello.vue 文件，使用 Element 组件 中  1&amp;lt;el-dialog v-model=&amp;quot;visible&amp;quot;&amp;gt; 修改为 1&amp;lt;el-dialog :visible.sync=&amp;qu">
+<meta name="keywords" content="PHP,环境搭建">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Laravel5.5 + Vue2 + Element 环境搭建">
 <meta property="og:url" content="http://mrzhouxiaofei.com/2017/09/17/Laravel5.5 + Vue2 + Element 环境搭建/index.html">
 <meta property="og:site_name" content="潜心做事">
-<meta property="og:description" content="搭建说明同类的教程网上也有不少，本文不是为了重复造轮子，只是在 Laravel5.5 LTS 推出之际，重新记录自己的搭建过程，避免以后再次踩坑。 网上的许多教程都是基于 Laravel5 系列的不同版本，虽然大致过程都差不多，但是对于前端编译工具不甚了解的人来说，官方推荐的前端编译工具的改变也着实容易让人迷糊。 为了便于理解，本文初次搭建时，尽量简单，能运行即可，关于前端编译工具，Vue 路由等">
+<meta property="og:description" content="更新说明2018 年 1 月 25 日更新 开始写这篇文章时，Element 的版本还是 1.4，现在已经来到 2.0 了，有些步骤需要修改，特此说明。  第 9 步，修改 Hello.vue 文件，使用 Element 组件 中  1&amp;lt;el-dialog v-model=&amp;quot;visible&amp;quot;&amp;gt; 修改为 1&amp;lt;el-dialog :visible.sync=&amp;qu">
 <meta property="og:image" content="http://mrzhouxiaofei.com/images/Larvuent_5.jpg">
 <meta property="og:image" content="http://mrzhouxiaofei.com/images/Larvuent_2.jpg">
 <meta property="og:image" content="http://mrzhouxiaofei.com/images/Larvuent_3.jpg">
 <meta property="og:image" content="http://mrzhouxiaofei.com/images/Larvuent_4.jpg">
-<meta property="og:updated_time" content="2017-09-17T06:43:18.356Z">
+<meta property="og:updated_time" content="2018-01-25T07:45:25.507Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Laravel5.5 + Vue2 + Element 环境搭建">
-<meta name="twitter:description" content="搭建说明同类的教程网上也有不少，本文不是为了重复造轮子，只是在 Laravel5.5 LTS 推出之际，重新记录自己的搭建过程，避免以后再次踩坑。 网上的许多教程都是基于 Laravel5 系列的不同版本，虽然大致过程都差不多，但是对于前端编译工具不甚了解的人来说，官方推荐的前端编译工具的改变也着实容易让人迷糊。 为了便于理解，本文初次搭建时，尽量简单，能运行即可，关于前端编译工具，Vue 路由等">
+<meta name="twitter:description" content="更新说明2018 年 1 月 25 日更新 开始写这篇文章时，Element 的版本还是 1.4，现在已经来到 2.0 了，有些步骤需要修改，特此说明。  第 9 步，修改 Hello.vue 文件，使用 Element 组件 中  1&amp;lt;el-dialog v-model=&amp;quot;visible&amp;quot;&amp;gt; 修改为 1&amp;lt;el-dialog :visible.sync=&amp;qu">
 <meta name="twitter:image" content="http://mrzhouxiaofei.com/images/Larvuent_5.jpg">
 
   
@@ -167,7 +167,7 @@
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#搭建说明"><span class="toc-text">搭建说明</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#搭建过程"><span class="toc-text">搭建过程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-新建-Laravel5-5-项目"><span class="toc-text">1.新建 Laravel5.5 项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-安装前端依赖库"><span class="toc-text">2.安装前端依赖库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-修改-Laravel-路由"><span class="toc-text">3.修改 Laravel 路由</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-新建-Hello-vue-文件"><span class="toc-text">4.新建 Hello.vue 文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-修改-app-js-文件，渲染组件"><span class="toc-text">5.修改 app.js 文件，渲染组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-新建-Laravel-视图文件，和-Vue-交互"><span class="toc-text">6.新建 Laravel 视图文件，和 Vue 交互</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-编译前端组件，运行"><span class="toc-text">7.编译前端组件，运行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-引入-Element"><span class="toc-text">8.引入 Element</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-修改-Hello-vue-文件，使用-Element-组件"><span class="toc-text">9.修改 Hello.vue 文件，使用 Element 组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-再次编译前端资源，运行"><span class="toc-text">10.再次编译前端资源，运行</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#完善"><span class="toc-text">完善</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CSRF-防护"><span class="toc-text">CSRF 防护</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用-Vue-Router"><span class="toc-text">使用 Vue Router</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-安装-vue-router"><span class="toc-text">1.安装 vue-router</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-配置-vue-router"><span class="toc-text">2.配置 vue-router</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-引入-vue-router"><span class="toc-text">3.引入 vue-router</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-重新编译"><span class="toc-text">4.重新编译</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码拆分"><span class="toc-text">代码拆分</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#更新说明"><span class="toc-text">更新说明</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#搭建说明"><span class="toc-text">搭建说明</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#搭建过程"><span class="toc-text">搭建过程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-新建-Laravel5-5-项目"><span class="toc-text">1.新建 Laravel5.5 项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-安装前端依赖库"><span class="toc-text">2.安装前端依赖库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-修改-Laravel-路由"><span class="toc-text">3.修改 Laravel 路由</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-新建-Hello-vue-文件"><span class="toc-text">4.新建 Hello.vue 文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-修改-app-js-文件，渲染组件"><span class="toc-text">5.修改 app.js 文件，渲染组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-新建-Laravel-视图文件，和-Vue-交互"><span class="toc-text">6.新建 Laravel 视图文件，和 Vue 交互</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-编译前端组件，运行"><span class="toc-text">7.编译前端组件，运行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-引入-Element"><span class="toc-text">8.引入 Element</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-修改-Hello-vue-文件，使用-Element-组件"><span class="toc-text">9.修改 Hello.vue 文件，使用 Element 组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-再次编译前端资源，运行"><span class="toc-text">10.再次编译前端资源，运行</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#完善"><span class="toc-text">完善</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CSRF-防护"><span class="toc-text">CSRF 防护</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用-Vue-Router"><span class="toc-text">使用 Vue Router</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-安装-vue-router"><span class="toc-text">1.安装 vue-router</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-配置-vue-router"><span class="toc-text">2.配置 vue-router</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-引入-vue-router"><span class="toc-text">3.引入 vue-router</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-重新编译"><span class="toc-text">4.重新编译</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码拆分"><span class="toc-text">代码拆分</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol>
   </div>
 
 
@@ -215,7 +215,26 @@
 
   <div class="article-content">
     
-      <h1 id="搭建说明"><a href="#搭建说明" class="headerlink" title="搭建说明"></a>搭建说明</h1><p>同类的教程网上也有不少，本文不是为了重复造轮子，只是在 Laravel5.5 LTS 推出之际，重新记录自己的搭建过程，避免以后再次踩坑。</p>
+      <h1 id="更新说明"><a href="#更新说明" class="headerlink" title="更新说明"></a>更新说明</h1><p><strong>2018 年 1 月 25 日更新</strong></p>
+<p>开始写这篇文章时，Element 的版本还是 1.4，现在已经来到 2.0 了，有些步骤需要修改，特此说明。</p>
+<ol>
+<li>第 9 步，<em>修改 Hello.vue 文件，使用 Element 组件</em> 中</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;el-dialog v-model=&quot;visible&quot;&gt;</div></pre></td></tr></table></figure>
+<p>修改为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;el-dialog :visible.sync=&quot;visible&quot;&gt;</div></pre></td></tr></table></figure>
+<ol>
+<li>第 8 步，<em>引入 Element</em> 中，使用命令</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm i element-ui -S</div></pre></td></tr></table></figure>
+<p>默认安装的 Element 是 2.0 版本，2.0 版本的主题文件夹，由 theme-default 改为了 theme-chalk，所以下面 <em>修改 resources/assets/js/app.js 文件</em> 中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">import &apos;element-ui/lib/theme-default/index.css&apos;;</div></pre></td></tr></table></figure>
+<p>要改成</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">import &apos;element-ui/lib/theme-chalk/index.css&apos;;</div></pre></td></tr></table></figure>
+<p>当然，如果你想继续使用 1.4 版本的 Element 也是可以的，使用命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm i element-ui@legacy -S</div></pre></td></tr></table></figure>
+<p>安装的即是 1.4 版，自然的，主题文件夹也不需要修改了。</p>
+<h1 id="搭建说明"><a href="#搭建说明" class="headerlink" title="搭建说明"></a>搭建说明</h1><p>同类的教程网上也有不少，本文不是为了重复造轮子，只是在 Laravel5.5 LTS 推出之际，重新记录自己的搭建过程，避免以后再次踩坑。</p>
 <p>网上的许多教程都是基于 Laravel5 系列的不同版本，虽然大致过程都差不多，但是对于前端编译工具不甚了解的人来说，官方推荐的前端编译工具的改变也着实容易让人迷糊。</p>
 <p>为了便于理解，本文初次搭建时，尽量简单，能运行即可，关于前端编译工具，Vue 路由等等，后面再说。</p>
 <p>本文全部代码，可以到 github 上获取： </p>
